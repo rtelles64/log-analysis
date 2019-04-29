@@ -1,3 +1,67 @@
+The Associated Views:
+Article Titles: (id, title, slug)
+(3, 'Bad things gone, say good people', 'bad-things-gone')
+(4, 'Balloon goons doomed', 'balloon-goons-doomed')
+(1, 'Bears love berries, alleges bear', 'bears-love-berries')
+(2, 'Candidate is jerk, alleges rival', 'candidate-is-jerk')
+(1, "Goats eat Google's lawn", 'goats-eat-googles')
+(1, 'Media obsessed with bears', 'media-obsessed-with-bears')
+(2, 'Trouble for troubled troublemakers', 'trouble-for-troubled')
+(1, 'There are a lot of bears', 'so-many-bears')
+
+Substring Titles: (title, views)
+('candidate-is-jerk', 338647L)
+('bears-love-berries', 253801L)
+('bad-things-gone', 170098L)
+('goats-eat-googles', 84906L)
+('trouble-for-troubled', 84810L)
+('balloon-goons-doomed', 84557L)
+('so-many-bears', 84504L)
+('media-obsessed-with-bears', 84383L)
+
+Top Authors: (name, title, views)
+('Rudolf von Treppenwitz', 'Candidate is jerk, alleges rival', 338647L)
+('Ursula La Multa', 'Bears love berries, alleges bear', 253801L)
+('Anonymous Contributor', 'Bad things gone, say good people', 170098L)
+('Ursula La Multa', "Goats eat Google's lawn", 84906L)
+('Rudolf von Treppenwitz', 'Trouble for troubled troublemakers', 84810L)
+('Markoff Chaney', 'Balloon goons doomed', 84557L)
+('Ursula La Multa', 'There are a lot of bears', 84504L)
+('Ursula La Multa', 'Media obsessed with bears', 84383L)
+
+Errors: (date, total, sum)
+('Jul/01/2016', 38705L, 274.0)
+('Jul/02/2016', 55200L, 389.0)
+('Jul/03/2016', 54866L, 401.0)
+('Jul/04/2016', 54903L, 380.0)
+('Jul/05/2016', 54585L, 423.0)
+('Jul/06/2016', 54774L, 420.0)
+('Jul/07/2016', 54740L, 360.0)
+('Jul/08/2016', 55084L, 418.0)
+('Jul/09/2016', 55236L, 410.0)
+('Jul/10/2016', 54489L, 371.0)
+('Jul/11/2016', 54497L, 403.0)
+('Jul/12/2016', 54839L, 373.0)
+('Jul/13/2016', 55180L, 383.0)
+('Jul/14/2016', 55196L, 383.0)
+('Jul/15/2016', 54962L, 408.0)
+('Jul/16/2016', 54498L, 374.0)
+('Jul/17/2016', 55907L, 1265.0)
+('Jul/18/2016', 55589L, 374.0)
+('Jul/19/2016', 55341L, 433.0)
+('Jul/20/2016', 54557L, 383.0)
+('Jul/21/2016', 55241L, 418.0)
+('Jul/22/2016', 55206L, 406.0)
+('Jul/23/2016', 54894L, 373.0)
+('Jul/24/2016', 55100L, 431.0)
+('Jul/25/2016', 54613L, 391.0)
+('Jul/26/2016', 54378L, 396.0)
+('Jul/27/2016', 54489L, 367.0)
+('Jul/28/2016', 54797L, 393.0)
+('Jul/29/2016', 54951L, 382.0)
+('Jul/30/2016', 55073L, 397.0)
+('Jul/31/2016', 45845L, 329.0)
+
 Top 3 Articles:
 Candidate is jerk, alleges rival
 Bears love berries, alleges bear
@@ -10,4 +74,4 @@ Anonymous Contributor
 Markoff Chaney
 
 Date Where Error > 1%:
-2016-07-17
+Jul/31/2016

@@ -5,6 +5,7 @@
 #   psql -d news
 
 import psycopg2
+from datetime import datetime
 
 """
 A reporting tool that prints out reports (in plain text) based on data in a
@@ -63,8 +64,8 @@ What are we reporting?
 #
 # This results in:
 #
-#                  path            | views
-#       ---------------------------+--------
+#                 path            | views
+#      ---------------------------+--------
 #       candidate-is-jerk         | 338647
 #       bears-love-berries        | 253801
 #       bad-things-gone           | 170098
@@ -272,6 +273,23 @@ try:
     # Make a cursor object
     cur = db.cursor()
 
+    # Views
+    view1 = """
+        select * from article_titles;
+    """
+
+    view2 = """
+        select * from substr_title;
+    """
+
+    view3 = """
+        select * from top_authors;
+    """
+
+    view4 = """
+        select * from errors;
+    """
+
     # Queries
     query1 = """
         select title, views from article_titles, substr_title
@@ -287,6 +305,22 @@ try:
         select date, sum/total * 100 as percentage from errors
         where sum/total > 0.01;
     """
+    # Execute Views
+    cur.execute(view1)
+
+    article_titles = cur.fetchall()
+
+    cur.execute(view2)
+
+    substr_title = cur.fetchall()
+
+    cur.execute(view3)
+
+    top_authors_data = cur.fetchall()
+
+    cur.execute(view4)
+
+    error_data = cur.fetchall()
 
     # Execute Query 1
     cur.execute(query1)
@@ -305,8 +339,24 @@ try:
 
     # Close connection
     db.close()
+    print("The Associated Views:")
+    print("Article Titles: (id, title, slug)")
+    for title in article_titles:
+        print(title)
 
-    print("Top 3 Articles:")
+    print("\nSubstring Titles: (title, views)")
+    for short in substr_title:
+        print(short)
+
+    print("\nTop Authors: (name, title, views)")
+    for author in top_authors_data:
+        print(author)
+
+    print("\nErrors: (date, total, sum)")
+    for error in error_data:
+        print(datetime.strftime(error[0],'%b/%d/%Y'), error[1], error[2])
+
+    print("\nTop 3 Articles:")
     for title in top_three:
         print(title[0])
 
@@ -315,8 +365,7 @@ try:
         print(author[0])
 
     print("\nDate Where Error > 1%:")
-    print(error[0][0])
+    print(datetime.strftime(error[0], '%b/%d/%Y'))
 
 except Exception as e:
-    print("Can't connect to database. Invalid DBNAME")
     print(e)
