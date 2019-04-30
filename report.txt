@@ -74,4 +74,4 @@ Anonymous Contributor
 Markoff Chaney
 
 Date Where Error > 1%:
-Jul/31/2016
+Date: Jul/17/2016, with Error: 0.022626862468
