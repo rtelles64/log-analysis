@@ -269,103 +269,103 @@ What are we reporting?
 try:
     # Connect to database
     db = psycopg2.connect("dbname='news'")
-
-    # Make a cursor object
-    cur = db.cursor()
-
-    # Views
-    view1 = """
-        select * from article_titles;
-    """
-
-    view2 = """
-        select * from substr_title;
-    """
-
-    view3 = """
-        select * from top_authors;
-    """
-
-    view4 = """
-        select * from errors;
-    """
-
-    # Queries
-    query1 = """
-        select title, views from article_titles, substr_title
-        where article_titles.slug = substr_title.path
-        order by substr_title.views desc limit 3;
-    """
-
-    query2 = """
-        select name from top_authors group by name order by max(views) desc;
-    """
-
-    query3 = """
-        select date, sum/total * 100 as percentage from errors
-        where sum/total > 0.01;
-    """
-    # Execute Views
-    cur.execute(view1)
-
-    article_titles = cur.fetchall()
-
-    cur.execute(view2)
-
-    substr_title = cur.fetchall()
-
-    cur.execute(view3)
-
-    top_authors_data = cur.fetchall()
-
-    cur.execute(view4)
-
-    error_data = cur.fetchall()
-
-    # Execute Query 1
-    cur.execute(query1)
-
-    top_three = cur.fetchall()
-
-    # Execute Query 2
-    cur.execute(query2)
-
-    top_authors = cur.fetchall()
-
-    # Execute Query 3
-    cur.execute(query3)
-
-    error = cur.fetchall()
-
-    # Close connection
-    db.close()
-    print("The Associated Views:")
-    print("Article Titles: (id, title, slug)")
-    for title in article_titles:
-        print(title)
-
-    print("\nSubstring Titles: (title, views)")
-    for short in substr_title:
-        print(short)
-
-    print("\nTop Authors: (name, title, views)")
-    for author in top_authors_data:
-        print(author)
-
-    print("\nErrors: (date, total, sum)")
-    for error in error_data:
-        print(datetime.strftime(error[0],'%b/%d/%Y'), error[1], error[2])
-
-    print("\nTop 3 Articles:")
-    for title in top_three:
-        print(title[0])
-
-    print("\nTop Authors:")
-    for author in top_authors:
-        print(author[0])
-
-    print("\nDate Where Error > 1%:")
-    print(datetime.strftime(error[0], '%b/%d/%Y'))
-
 except Exception as e:
     print(e)
+else:
+
+        # Make a cursor object
+        cur = db.cursor()
+
+        # Views
+        view1 = """
+            select * from article_titles;
+        """
+
+        view2 = """
+            select * from substr_title;
+        """
+
+        view3 = """
+            select * from top_authors;
+        """
+
+        view4 = """
+            select * from errors;
+        """
+
+        # Queries
+        query1 = """
+            select title, views from article_titles, substr_title
+            where article_titles.slug = substr_title.path
+            order by substr_title.views desc limit 3;
+        """
+
+        query2 = """
+            select name from top_authors group by name order by max(views) desc;
+        """
+
+        query3 = """
+            select date, sum/total * 100 as percentage from errors
+            where sum/total > 0.01;
+        """
+        # Execute Views
+        cur.execute(view1)
+
+        article_titles = cur.fetchall()
+
+        cur.execute(view2)
+
+        substr_title = cur.fetchall()
+
+        cur.execute(view3)
+
+        top_authors_data = cur.fetchall()
+
+        cur.execute(view4)
+
+        error_data = cur.fetchall()
+
+        # Execute Query 1
+        cur.execute(query1)
+
+        top_three = cur.fetchall()
+
+        # Execute Query 2
+        cur.execute(query2)
+
+        top_authors = cur.fetchall()
+
+        # Execute Query 3
+        cur.execute(query3)
+
+        error = cur.fetchall()
+
+        # Close connection
+        db.close()
+        print("The Associated Views:")
+        print("Article Titles: (id, title, slug)")
+        for title in article_titles:
+            print(title)
+
+        print("\nSubstring Titles: (title, views)")
+        for short in substr_title:
+            print(short)
+
+        print("\nTop Authors: (name, title, views)")
+        for author in top_authors_data:
+            print(author)
+
+        print("\nErrors: (date, total, sum)")
+        for error in error_data:
+            print(datetime.strftime(error[0],'%b/%d/%Y'), error[1], error[2])
+
+        print("\nTop 3 Articles:")
+        for title in top_three:
+            print(title[0])
+
+        print("\nTop Authors:")
+        for author in top_authors:
+            print(author[0])
+
+        print("\nDate Where Error > 1%:")
+        print(datetime.strftime(error[0], '%b/%d/%Y'))
