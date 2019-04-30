@@ -259,11 +259,13 @@ What are we reporting?
 #
 # Then we generate our query:
 #
-#   select date, sum/total * 100 as percentage from errors
+#   select date, sum/total as error from errors
 #   where sum/total > 0.01;
 #
 # This returns:
 #
+#       date   |    error
+#   -----------+-----------------
 #   2016-07-17 | 2.26268624680273
 
 try:
@@ -301,11 +303,12 @@ else:
         """
 
         query2 = """
-            select name from top_authors group by name order by max(views) desc;
+            select name from top_authors group by name
+            order by max(views) desc;
         """
 
         query3 = """
-            select date, sum/total * 100 as percentage from errors
+            select date, sum/total as error from errors
             where sum/total > 0.01;
         """
         # Execute Views
@@ -356,8 +359,9 @@ else:
             print(author)
 
         print("\nErrors: (date, total, sum)")
-        for error in error_data:
-            print(datetime.strftime(error[0],'%b/%d/%Y'), error[1], error[2])
+        for errors in error_data:
+            print(datetime.strftime(errors[0], '%b/%d/%Y'),
+                  errors[1], errors[2])
 
         print("\nTop 3 Articles:")
         for title in top_three:
@@ -368,4 +372,6 @@ else:
             print(author[0])
 
         print("\nDate Where Error > 1%:")
-        print(datetime.strftime(error[0], '%b/%d/%Y'))
+        print("Date: {}, with Error: {}".format(
+              datetime.strftime(error[0][0], '%b/%d/%Y'),
+              error[0][1]))
